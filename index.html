@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launcher</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const brokenFixedWindowHeight = navigator.userAgent.match(/Safari/) && !navigator.userAgent.match(/Chrome/)
+            const height = 396 + (brokenFixedWindowHeight ? 26 : 0)
+            
+            document.getElementById("launch").addEventListener('click', function() {
+                window.open("tracker.html", "PrizeTracker", 'toolbar=no,width=244,height=' + height + ',status=no,scrollbars=no,resizable=no,location=no')
+            })
+        })
+    </script>
+</head>
+<body>
+    <p>
+        <button id="launch">Launch Prize Tracker</button>
+    </p>
+    <p>
+        <a href="prizeTracker 1.4.zip">(Download)</a>
+    </p>
+    <p>
+        Images by Trinexx, code by otherTom.
+    </p>
+    
+</body>
+</html>

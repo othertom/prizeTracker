@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prize Tracker</title>
+
+    <script>
+        function cycle(prize, by) {
+            return prize.replace(/prize(\d)/, function(substr, num) {
+                return "prize" + (Number.parseInt(num) + 8 + by) % 8
+            });
+        }
+
+        function createTracker() {
+            const table = document.getElementById("prizetracker")
+
+            for (let i = 1; i <= 7; i++) {
+                const row = document.createElement("tr")
+
+                const pack = document.createElement("div")
+                pack.id = "pack" + i
+                pack.classList += "pack"
+
+                const prize = document.createElement("div")
+                prize.id = "prize" + i
+                prize.classList += "prize"
+
+                const packImg = new Image(158, 54)
+                packImg.src = "./images/pack" + i + ".png"
+
+                const prizeImg = new Image(80, 54)
+                prizeImg.src = "./images/prize0.png"
+
+                prizeImg.addEventListener('click', function(event) {
+                    event.target.src = cycle(event.target.src, 1)
+                })
+
+                prizeImg.addEventListener('contextmenu', function(event) {
+                    event.preventDefault()
+                    event.target.src = cycle(event.target.src, -1)
+                })
+
+                pack.appendChild(packImg)
+                prize.appendChild(prizeImg)
+                row.appendChild(pack)
+                row.appendChild(prize)
+                table.appendChild(row)
+            }
+
+        }
+        
+        document.addEventListener('DOMContentLoaded', createTracker)
+    </script>
+
+    <style>
+        div.pack, div.prize {
+            display: inline;
+            padding: 0px;
+            margin: 0px
+        }
+        body, html, tr, table {
+            margin: 0px;
+            border: 0px;
+            font-size: 0px;
+        }
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        div.pack {
+            padding-right: 2px;
+        }
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <table id="prizetracker"></table>
+</body>
+</html>
